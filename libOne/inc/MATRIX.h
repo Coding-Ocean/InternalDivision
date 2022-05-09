@@ -1,18 +1,33 @@
 #pragma once
-#include"VECTOR3.h"
+//#include"VECTOR.h"
+class VECTOR;
 
 class MATRIX {
 public:
     float   _11, _12, _13, _14,
-        _21, _22, _23, _24,
-        _31, _32, _33, _34,
-        _41, _42, _43, _44;
-    MATRIX();
+            _21, _22, _23, _24,
+            _31, _32, _33, _34,
+            _41, _42, _43, _44;
+    //çsóÒÇÇ¬Ç≠ÇÈ
+    //MATRIX();
     void identity();
-    void mulTranslate(float x, float y, float z = 0);
-    void mulScale(float x, float y, float z = 1);
-    void mulRotateZ(float r);
+    void translate(float x, float y, float z=0);
+    void scaling(float x, float y, float z=1);
+    void rotateZ(float angle);
+    void rotateY(float angle);
+    void rotateX(float angle);
+    void camera(const VECTOR& camPos, const VECTOR& lookatPos, const VECTOR& upVec);
+    void pers(float angle, float aspect, float n, float f);
     void ortho(float l, float r, float b, float t, float n, float f);
-    VECTOR3 operator*(const VECTOR3& v) const;
+    //çsóÒìØémÇÃä|ÇØéZ
+    void mulTranslate(float x, float y, float z = 0);
+    void mulTranslate(const VECTOR& a);
+    void mulScaling(float x, float y, float z = 1);
+    void mulScaling(const VECTOR& a);
+    void mulRotateZ(float angle);
+    void mulRotateY(float angle);
+    void mulRotateX(float angle);
     MATRIX operator*(const MATRIX& m) const;
+    //çsóÒÇ∆ÉxÉNÉgÉãÇÃä|ÇØéZ
+    VECTOR operator*(const VECTOR& v) const;
 };

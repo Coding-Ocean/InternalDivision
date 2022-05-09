@@ -32,6 +32,10 @@ void gmain()
 		mathAxis(5, 255);
 
 		//線分の移動と描画
+		if (isPress(KEY_L)) { b.x += speed; }
+		if (isPress(KEY_J)) { b.x -= speed; }
+		if (isPress(KEY_I)) { b.y += speed; }
+		if (isPress(KEY_K)) { b.y -= speed; }
 		if (isPress(KEY_D)) { c.x += speed; d.x += speed; }
 		if (isPress(KEY_A)) { c.x -= speed; d.x -= speed; }
 		if (isPress(KEY_W)) { c.y += speed; d.y += speed; }
@@ -50,8 +54,8 @@ void gmain()
 			//「線分a_b」が「線分c_d」と交わっているか
 			float m = absolute(d1);
 			float n = absolute(d2);
-			VECTOR2 v3 = (v1 * n + v2 * m) / (m + n);
-			VECTOR2 p = c + v3;
+			//(動画と違いますが、よく考えてみると元の式でだいじょうぶでした)
+			VECTOR2 p = (a * n + b * m) / (m + n);
 			if (p.y >= c.y && p.y <= d.y) 
 			{
 				mathPoint(p, 30, COLOR(255, 0, 0));
